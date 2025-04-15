@@ -13,14 +13,14 @@ async function bootstrap() {
     },
   });
 
-  await app.init();
-
-  app.enableShutdownHooks();
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   await app.startAllMicroservices();
   await app.listen(process.env.PORT ?? 3000);
 
-  Logger.log('HTTP server is running', 'Bootstrap');
+  Logger.log(
+    'Application is running on port ' + (process.env.PORT ?? 3000),
+    'Bootstrap',
+  );
 }
 bootstrap();
