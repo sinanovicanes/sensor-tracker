@@ -5,6 +5,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { DatabaseModule } from './modules/database/database.module';
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { EncryptionModule } from './modules/encryption/encryption.module';
 
 @Module({
   imports: [
@@ -19,7 +21,9 @@ import { UserModule } from './modules/user/user.module';
       global: true,
     }),
     DatabaseModule,
+    EncryptionModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [
