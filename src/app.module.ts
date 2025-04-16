@@ -8,6 +8,7 @@ import { CompanyModule } from './modules/company/company.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { EncryptionModule } from './modules/encryption/encryption.module';
 import { UserModule } from './modules/user/user.module';
+import { SensorModule } from './modules/sensor/sensor.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserModule } from './modules/user/user.module';
     UserModule,
     AuthModule,
     CompanyModule,
+    SensorModule,
   ],
   controllers: [],
   providers: [
