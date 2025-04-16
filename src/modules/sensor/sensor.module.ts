@@ -12,5 +12,6 @@ import { SensorService } from './sensor.service';
   imports: [TypeOrmModule.forFeature([Sensor, SensorLog])],
   providers: [SensorService, SensorLogService],
   controllers: [SensorController, SensorLogController, MqttSensorController],
+  exports: [SensorService],
 })
 export class SensorModule {}

@@ -12,6 +12,7 @@ import { DatabaseModule } from './modules/database/database.module';
 import { EncryptionModule } from './modules/encryption/encryption.module';
 import { SensorModule } from './modules/sensor/sensor.module';
 import { UserModule } from './modules/user/user.module';
+import { RealtimeModule } from './modules/realtime/realtime.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UserModule } from './modules/user/user.module';
     CompanyModule,
     SensorModule,
     ActivityLogModule,
+    RealtimeModule,
   ],
   controllers: [],
   providers: [
