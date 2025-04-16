@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EncryptionService } from '../encryption/encryption.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './entities/user.entity';
@@ -11,9 +12,11 @@ export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
     private readonly eventEmitter: EventEmitter2,
+    private readonly encryptionService: EncryptionService,
   ) {}
 
   async create(dto: CreateUserDto): Promise<User> {
+    dto.password = await this.encryptionService.hash(dto.password);
     const user = this.userRepo.create(dto);
     const savedUser = await this.userRepo.save(user);
 
@@ -35,6 +38,10 @@ export class UserService {
   }
 
   async update(id: string, dto: UpdateUserDto): Promise<User | null> {
+    if (dto.password) {
+      dto.password = await this.encryptionService.hash(dto.password);
+    }
+
     const result = await this.userRepo.update(id, dto);
 
     if (result.affected === 0) {
