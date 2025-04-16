@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer';
+import { ActivityLog } from 'src/modules/activity-log/entities/activity-log.entity';
 import { Company } from 'src/modules/company/entities/company.entity';
 import { WithTimestamps } from 'src/modules/database/utils/with-timestamps';
 import {
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -42,4 +44,7 @@ export class User extends WithTimestamps {
     onDelete: 'SET NULL',
   })
   company: Company;
+
+  @OneToMany(() => ActivityLog, (activityLog) => activityLog.user)
+  activityLogs: ActivityLog[];
 }

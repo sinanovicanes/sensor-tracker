@@ -9,6 +9,7 @@ import { DatabaseModule } from './modules/database/database.module';
 import { EncryptionModule } from './modules/encryption/encryption.module';
 import { UserModule } from './modules/user/user.module';
 import { SensorModule } from './modules/sensor/sensor.module';
+import { ActivityLogModule } from './modules/activity-log/activity-log.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { SensorModule } from './modules/sensor/sensor.module';
     AuthModule,
     CompanyModule,
     SensorModule,
+    ActivityLogModule,
   ],
   controllers: [],
   providers: [
