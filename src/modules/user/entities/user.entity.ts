@@ -1,6 +1,13 @@
 import { Exclude } from 'class-transformer';
+import { Company } from 'src/modules/company/entities/company.entity';
 import { WithTimestamps } from 'src/modules/database/utils/with-timestamps';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum UserRole {
   SYSTEM_ADMIN = 'system_admin',
@@ -26,5 +33,13 @@ export class User extends WithTimestamps {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
-  // TODO: Add relations with other entitites like company, permissions etc.
+  @Column({ name: 'company_id', nullable: true })
+  companyId: string;
+
+  @JoinColumn({ name: 'company_id' })
+  @ManyToOne(() => Company, (company) => company.users, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  company: Company;
 }
