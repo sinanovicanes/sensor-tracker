@@ -1,8 +1,8 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+// TODO: Add env validation
 export default registerAs<TypeOrmModuleOptions>('database', () => {
-  console.log(parseInt(process.env.DATABASE_PORT ?? '5432', 10) || 5432);
   return {
     type: 'postgres',
     host: process.env.DATABASE_HOST ?? '127.0.0.1',
