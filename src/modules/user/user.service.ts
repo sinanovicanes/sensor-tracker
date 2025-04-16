@@ -3,6 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -33,7 +34,7 @@ export class UserService {
     return this.userRepo.findOneBy({ email });
   }
 
-  async update(id: string, dto: CreateUserDto): Promise<User | null> {
+  async update(id: string, dto: UpdateUserDto): Promise<User | null> {
     const result = await this.userRepo.update(id, dto);
 
     if (result.affected === 0) {

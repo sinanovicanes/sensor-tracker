@@ -27,7 +27,6 @@ export class CredentialsGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const credentials = this.getCredentialsFromRequest(request);
-
     const user = await this.authService.validateByCredentials(credentials);
 
     if (!user) {

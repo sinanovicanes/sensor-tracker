@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { WithTimestamps } from 'src/modules/database/utils/with-timestamps';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -12,12 +13,13 @@ export class User extends WithTimestamps {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'full_name' })
   fullName: string;
 
   @Column({ unique: true })
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
 
