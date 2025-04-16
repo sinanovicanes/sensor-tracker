@@ -5,8 +5,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { SensorLog } from './sensor-log.entity';
 
 // This could be extended with type etc.
 @Entity('sensors')
@@ -22,4 +24,7 @@ export class Sensor extends WithTimestamps {
     onDelete: 'SET NULL',
   })
   company: Company;
+
+  @OneToMany(() => SensorLog, (sensorLog) => sensorLog.sensor)
+  logs: SensorLog[];
 }
