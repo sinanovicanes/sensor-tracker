@@ -14,6 +14,7 @@ import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dtos/create-company.dto';
 import { UpdateCompanyDto } from './dtos/update-company.dto';
 
+// TODO: Update guards
 @Controller('companies')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}

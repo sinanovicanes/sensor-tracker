@@ -1,13 +1,15 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ActivityLog } from './entities/activity-log.entity';
+import { UserModule } from '../user/user.module';
+import { ActivityLogController } from './activity-log.controller';
 import { ActivityLogService } from './activity-log.service';
+import { ActivityLog } from './entities/activity-log.entity';
 
-// TODO: Create controller to retrieve activity logs
 @Global()
 @Module({
-  imports: [TypeOrmModule.forFeature([ActivityLog])],
+  imports: [TypeOrmModule.forFeature([ActivityLog]), UserModule],
   providers: [ActivityLogService],
   exports: [ActivityLogService],
+  controllers: [ActivityLogController],
 })
 export class ActivityLogModule {}

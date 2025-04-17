@@ -15,9 +15,10 @@ import { ActivityAction } from '../entities/activity-log.entity';
 @Injectable()
 export class ActivityLogInterceptor implements NestInterceptor {
   private readonly logger = new Logger(ActivityLogInterceptor.name);
-  private readonly reflector = new Reflector();
-
-  constructor(private readonly activityLogService: ActivityLogService) {}
+  constructor(
+    private readonly reflector: Reflector,
+    private readonly activityLogService: ActivityLogService,
+  ) {}
 
   private extractActivityAction(
     context: ExecutionContext,
